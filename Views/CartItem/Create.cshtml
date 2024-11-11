@@ -1,0 +1,49 @@
+﻿@model Book_Management.Models.CartItem
+
+<!-- Page Heading -->
+<div class="container mt-5">
+    <div class="card shadow-sm mb-5 p-4 bg-white text-center">
+    <h2 class="text-center display-4 text-primary">Create a New Cart Item</h2>
+    <p class="text-muted text-center">Add a new cart item by filling out the details below.</p>
+    </div>
+    <!-- Form for Creating a Cart Item -->
+    <form asp-action="Create" class="mt-4 p-4 shadow-lg rounded bg-white">
+        <div class="form-group">
+            <label asp-for="CategoryName" class="control-label font-weight-bold">Category Name</label>
+            <input asp-for="CategoryName" class="form-control" placeholder="Enter category name" />
+            <span asp-validation-for="CategoryName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Description" class="control-label font-weight-bold">Description</label>
+            <input asp-for="Description" class="form-control" placeholder="Enter a brief description" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="form-group text-center mt-4">
+            <input type="submit" value="Create" class="btn btn-success btn-lg mx-2" />
+            <a asp-action="Index" class="btn btn-secondary btn-lg mx-2">Back to List</a>
+        </div>
+    </form>
+</div>
+
+<!-- Custom Styles -->
+<style>
+    .display-4 {
+        font-weight: bold;
+        color: #007bff;
+    }
+    .shadow-lg {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .form-control {
+        font-size: 1.1em;
+    }
+</style>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

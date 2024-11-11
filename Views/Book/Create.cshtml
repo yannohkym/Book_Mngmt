@@ -1,0 +1,63 @@
+﻿@model Book_Management.Models.Book
+
+<!-- Page Heading -->
+<div class="container mt-5">
+    <div class="card shadow-sm mb-5 p-4 bg-white text-center">
+        <h2 class="text-center display-4 text-primary"><b>Create a New Book</b></h2>
+        <p class="text-muted text-center"><b>Fill in the details to add a new book to your collection.<</b>/p>
+    </div>
+    <!-- Form for Creating a Book -->
+    <form asp-action="Create" class="mt-4 p-4 shadow-lg rounded bg-white">
+        <div class="form-group">
+            <label asp-for="Title" class="control-label font-weight-bold">Book Title</label>
+            <input asp-for="Title" class="form-control" placeholder="Enter book title" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Author" class="control-label font-weight-bold">Author</label>
+            <input asp-for="Author" class="form-control" placeholder="Enter author name" />
+            <span asp-validation-for="Author" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Price" class="control-label font-weight-bold">Price</label>
+            <input asp-for="Price" class="form-control" placeholder="Enter book price" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="CartItem.CartId" class="control-label font-weight-bold">Select Cart</label>
+            <select asp-for="CartId" asp-items="ViewBag.CartId" class="form-control">
+                <option value="">Choose a cart...</option>
+            </select>
+            <span asp-validation-for="CartId" class="text-danger"></span>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="form-group text-center mt-4">
+            <input type="submit" value="Create" class="btn btn-success btn-lg mx-2" />
+            <a asp-action="Index" class="btn btn-secondary btn-lg mx-2">Back to List</a>
+        </div>
+    </form>
+</div>
+
+<!-- Custom Styles -->
+<style>
+    .display-4 {
+        font-weight: bold;
+        color: #007bff;
+    }
+    .shadow-lg {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .form-control {
+        font-size: 1.1em;
+    }
+</style>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

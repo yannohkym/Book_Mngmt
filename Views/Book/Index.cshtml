@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Book_Management.Models.Book>
+
+@{
+    ViewData["Title"] = "Books";
+}
+
+<!-- Main Container -->
+<div class="container mt-5">
+    <!-- Page Heading -->
+  
+    <div class="card shadow-sm mb-5 p-4 bg-white text-center">
+        <h1 class="display-4 text-primary">Welcome to the Book Management System</h1>
+        <p class="lead text-muted">Manage your favorite books and add them to your cart easily!</p>
+        <div class="text-center my-4">
+            <a class="btn btn-success btn-lg mx-2" asp-controller="Cartitem" asp-action="Create">
+                <i class="fas fa-cart-plus"></i> Create New Cart Item
+            </a>
+            <a class="btn btn-primary btn-lg mx-2" asp-action="Create">
+                <i class="fas fa-book"></i> Add New Book
+            </a>
+            <a class="btn btn-info btn-lg mx-2" asp-controller="Cartitem" asp-action="Index">
+                <i class="fas fa-shopping-cart"></i> View Cart Items
+            </a>
+        </div>
+
+    </div>
+    <!-- Action Buttons -->
+  
+    <!-- Books Table -->
+    <div class="table-responsive">
+        <table class="table table-hover shadow">
+            <thead class="thead-dark">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Title)</th>
+                    <th>@Html.DisplayNameFor(model => model.Author)</th>
+                    <th>@Html.DisplayNameFor(model => model.Price)</th>
+                    <th>@Html.DisplayNameFor(model => model.CartItem.CategoryName)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Author)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CartItem.CategoryName)</td>
+                        <td>
+                            <a class="btn btn-sm btn-outline-warning" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                            <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Custom Styles -->
+<style>
+    .display-4 {
+        font-weight: bold;
+        color: #007bff;
+    }
+    .table-hover tbody tr:hover {
+        background-color: #f2f2f2;
+    }
+    .btn {
+        font-size: 1.1em;
+    }
+</style>

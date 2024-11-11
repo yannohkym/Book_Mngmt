@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Book_Management.Models.CartItem>
+
+@{
+    ViewData["Title"] = "CartItems";
+}
+
+<div class="container mt-5">
+    <!-- Card for Header and Create Button -->
+    <div class="card shadow-sm mb-5 p-4 bg-white text-center">
+        <h1 class="text-primary display-4">Cart Items</h1>
+        <p class="text-muted">Browse through the available cart items. Here, you can edit or delete existing items or add new ones.</p>
+
+        <div class="mt-3">
+            <a asp-action="Create" class="btn btn-success btn-lg">Create New Cart Item</a>
+        </div>
+    </div>
+
+    <!-- Card Display of CartItems -->
+   <!-- Card Display of CartItems -->
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-lg rounded">
+                <div class="card-body">
+                    <!-- Cart Item Title and Description -->
+                    <h5 class="card-title text-primary font-weight-bold">
+                        @Html.DisplayFor(modelItem => item.CategoryName)
+                    </h5>
+                    <p class="card-text text-secondary">
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </p>
+
+                    <!-- Related Books -->
+                    <div class="mt-3">
+                        <h6 class="font-weight-bold">Related Books:</h6>
+                        <ul class="list-group list-group-flush">
+                            @foreach (var book in item.Books) 
+                            {
+                                <li class="list-group-item">
+                                    <span class="font-weight-bold">@book.Title</span> - <span class="text-muted">@book.Author</span>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="text-center mt-3">
+                        <a asp-action="Edit" asp-route-id="@item.CartId" class="btn btn-outline-primary btn-sm">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.CartId" class="btn btn-outline-danger btn-sm">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+</div>
+
+<!-- Custom Styles -->
+<style>
+    .display-4 {
+        font-weight: bold;
+    }
+    .card {
+        border: none;
+        background-color: #f8f9fa;
+    }
+    .card-body {
+        padding: 1.5rem;
+    }
+    .card-title {
+        font-size: 1.4em;
+    }
+</style>

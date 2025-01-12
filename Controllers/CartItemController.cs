@@ -100,6 +100,7 @@ namespace Book_Management.Controllers
             _context.Cartitem.Remove(Cart);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+            var cart1 = await _context.CartItem.FindAsync(id);
         }
 
     }

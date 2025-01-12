@@ -101,7 +101,6 @@ namespace Book_Management.Controllers
             // dont remove  tp the cart
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-
         }
 
     }

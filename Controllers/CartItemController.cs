@@ -98,8 +98,10 @@ namespace Book_Management.Controllers
         {
             var Cart = await _context.Cartitem.FindAsync(id);
             _context.Cartitem.Remove(Cart);
+            // dont remove  tp the cart
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+
         }
 
     }
